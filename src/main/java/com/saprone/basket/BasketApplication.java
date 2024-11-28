@@ -1,13 +1,12 @@
-package com.saprone.userregistrationsender;
+package com.saprone.basket;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UserregistrationsenderApplication {
+public class BasketApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UserregistrationsenderApplication.class, args);
+		SpringApplication.run(BasketApplication.class, args);
 	}
-
 }
