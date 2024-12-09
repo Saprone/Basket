@@ -27,6 +27,10 @@ public class BasketService {
         basketRepository.saveAll(baskets);
     }
 
+    public void removeIngredientFromBasket(Integer ingredientId) {
+        basketRepository.deleteById(ingredientId);
+    }
+
     public List<Basket> getBasket() {
         return basketRepository.findAll();
     }

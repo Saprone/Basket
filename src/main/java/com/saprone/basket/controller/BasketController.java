@@ -29,6 +29,16 @@ public class BasketController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/ingredient/{ingredientId}")
+    public ResponseEntity<Void> removeIngredientFromBasket(@PathVariable Integer ingredientId) {
+        try {
+            basketService.removeIngredientFromBasket(ingredientId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping()
     public ResponseEntity<List<Basket>> getBasket() {
         List<Basket> baskets = basketService.getBasket();
