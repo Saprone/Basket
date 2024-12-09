@@ -2,12 +2,10 @@ package com.saprone.basket.model;
 
 import lombok.Getter;
 import lombok.Setter;
-//import java.util.List;
 
-@Getter
 @Setter
+@Getter
 public class Basket {
+    private int id;
     private String name;
-    //private Long id;
-    //private List<String> ingredients;
 }
