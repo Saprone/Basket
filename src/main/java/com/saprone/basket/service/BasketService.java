@@ -26,4 +26,8 @@ public class BasketService {
         List<Basket> baskets = objectMapper.readValue(decodedBasket.substring(0, decodedBasket.length() - 1), new TypeReference<List<Basket>>() {});
         basketRepository.saveAll(baskets);
     }
+
+    public List<Basket> getBasket() {
+        return basketRepository.findAll();
+    }
 }

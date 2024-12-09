@@ -1,9 +1,11 @@
 package com.saprone.basket.controller;
 
+import com.saprone.basket.model.Basket;
 import com.saprone.basket.service.BasketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/basket")
@@ -25,5 +27,11 @@ public class BasketController {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<Basket>> getBasket() {
+        List<Basket> baskets = basketService.getBasket();
+        return ResponseEntity.ok(baskets);
     }
 }
