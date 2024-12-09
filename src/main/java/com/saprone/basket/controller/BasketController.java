@@ -1,8 +1,5 @@
 package com.saprone.basket.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URLDecoder;
@@ -13,13 +10,11 @@ import java.nio.charset.StandardCharsets;
 @CrossOrigin(origins = "http://localhost:8085")
 public class BasketController {
 
-    @PostMapping("/post")
-    public ResponseEntity<String> postData(@RequestBody String encodedBasket) throws JsonProcessingException {
+    @PostMapping("/ingredient")
+    public ResponseEntity<Void> addIngredientToBasket(@RequestBody String encodedBasket) {
         String decodedBasket = URLDecoder.decode(encodedBasket, StandardCharsets.UTF_8);
-        JsonNode jsonNode = new ObjectMapper().readTree(decodedBasket);
+        System.out.println(decodedBasket); //[{"id":97,"name":"Dark Brown Sugar"},{"id":117,"name":"Farfalle"}]=
 
-        jsonNode.forEach(System.out::println);
-
-        return ResponseEntity.ok("Post request succeeded with data: " + decodedBasket);
+        return null;
     }
 }

@@ -6,6 +6,6 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Basket {
-    private int id;
+    private Integer id;
     private String name;
 }
