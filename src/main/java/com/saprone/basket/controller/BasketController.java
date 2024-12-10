@@ -19,10 +19,10 @@ public class BasketController {
         this.basketService = basketService;
     }
 
-    @PostMapping("/ingredient")
-    public ResponseEntity<Void> addIngredientToBasket(@RequestBody String encodedBasket) {
+    @PostMapping("/ingredient/add")
+    public ResponseEntity<Void> addIngredientToBasket(@RequestBody String ingredient) {
         try {
-            basketService.addIngredientsToBasket(encodedBasket);
+            basketService.addIngredientToBasket(ingredient);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }

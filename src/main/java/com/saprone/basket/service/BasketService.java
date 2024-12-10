@@ -21,10 +21,10 @@ public class BasketService {
         this.basketRepository = basketRepository;
     }
 
-    public void addIngredientsToBasket(String encodedBasket) throws Exception {
-        String decodedBasket = URLDecoder.decode(encodedBasket, StandardCharsets.UTF_8);
-        List<Basket> baskets = objectMapper.readValue(decodedBasket.substring(0, decodedBasket.length() - 1), new TypeReference<List<Basket>>() {});
-        basketRepository.saveAll(baskets);
+    public void addIngredientToBasket(String ingredientEncoded) throws Exception {
+        String ingredientDecoded = URLDecoder.decode(ingredientEncoded, StandardCharsets.UTF_8);
+        Basket basket = objectMapper.readValue(ingredientDecoded.substring(0, ingredientDecoded.length() - 1), new TypeReference<Basket>() {});
+        basketRepository.save(basket);
     }
 
     public void removeIngredientFromBasket(String ingredientId) {
