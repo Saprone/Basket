@@ -29,8 +29,8 @@ public class BasketController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/ingredient/{ingredientId}")
-    public ResponseEntity<Void> removeIngredientFromBasket(@PathVariable Integer ingredientId) {
+    @PostMapping("/ingredient/remove")
+    public ResponseEntity<Void> removeIngredientFromBasket(@RequestBody String ingredientId) {
         try {
             basketService.removeIngredientFromBasket(ingredientId);
         } catch (Exception e) {

@@ -27,8 +27,8 @@ public class BasketService {
         basketRepository.saveAll(baskets);
     }
 
-    public void removeIngredientFromBasket(Integer ingredientId) {
-        basketRepository.deleteById(ingredientId);
+    public void removeIngredientFromBasket(String ingredientId) {
+        basketRepository.deleteById(Integer.valueOf(ingredientId.substring(0, ingredientId.length() - 1)));
     }
 
     public List<Basket> getBasket() {
