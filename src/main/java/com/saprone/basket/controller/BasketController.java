@@ -23,6 +23,7 @@ public class BasketController {
     public ResponseEntity<Void> addIngredientToBasket(@RequestBody String ingredient) {
         try {
             basketService.addIngredientToBasket(ingredient);
+            //basketService.sendBasketToMessageQueue(basketService.getBasket());
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
@@ -33,6 +34,7 @@ public class BasketController {
     public ResponseEntity<Void> removeIngredientFromBasket(@RequestBody String ingredientId) {
         try {
             basketService.removeIngredientFromBasket(ingredientId);
+            //basketService.sendBasketToMessageQueue(basketService.getBasket());
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }

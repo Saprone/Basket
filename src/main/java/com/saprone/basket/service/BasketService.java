@@ -35,15 +35,13 @@ public class BasketService {
     public void removeIngredientFromBasket(String ingredientId) {
         basketRepository.deleteById(Integer.valueOf(ingredientId.substring(0, ingredientId.length() - 1)));
     }
+    
+    public void sendBasketToMessageQueue(List<Basket> baskets) throws JsonProcessingException {
+        String messageBody = new ObjectMapper().writeValueAsString(baskets);
+        senderClient.sendMessage(new ServiceBusMessage(messageBody));
+    }
 
     public List<Basket> getBasket() {
         return basketRepository.findAll();
     }
-    
-    /*public void sendBasketToMessageQueue(List<Basket> baskets) throws JsonProcessingException {
-        String messageBody = new ObjectMapper().writeValueAsString(baskets);
-        senderClient.sendMessage(new ServiceBusMessage(messageBody));
-
-        System.out.printf("Sent a basket message: %s%n", messageBody);
-    }*/
 }
