@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,9 +36,10 @@ public class BasketService {
     public void removeIngredientFromBasket(String ingredientId) {
         basketRepository.deleteById(Integer.valueOf(ingredientId.substring(0, ingredientId.length() - 1)));
     }
-    
+
     public void sendBasketToMessageQueue(List<Basket> baskets) throws JsonProcessingException {
-        String messageBody = new ObjectMapper().writeValueAsString(baskets);
+        List<Object> objectBaskets = new ArrayList<>(baskets);
+        String messageBody = new ObjectMapper().writeValueAsString(objectBaskets);
         senderClient.sendMessage(new ServiceBusMessage(messageBody));
     }
 
