@@ -1,5 +1,8 @@
 package com.saprone.basket.service;
 
+import com.azure.messaging.servicebus.ServiceBusMessage;
+import com.azure.messaging.servicebus.ServiceBusSenderClient;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.saprone.basket.model.Basket;
@@ -14,11 +17,13 @@ import java.util.List;
 public class BasketService {
 
     private final BasketRepository basketRepository;
+    private final ServiceBusSenderClient senderClient;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
-    public BasketService(BasketRepository basketRepository) {
+    public BasketService(BasketRepository basketRepository, ServiceBusSenderClient senderClient) {
         this.basketRepository = basketRepository;
+        this.senderClient = senderClient;
     }
 
     public void addIngredientToBasket(String ingredientEncoded) throws Exception {
@@ -34,4 +39,11 @@ public class BasketService {
     public List<Basket> getBasket() {
         return basketRepository.findAll();
     }
+    
+    /*public void sendBasketToMessageQueue(List<Basket> baskets) throws JsonProcessingException {
+        String messageBody = new ObjectMapper().writeValueAsString(baskets);
+        senderClient.sendMessage(new ServiceBusMessage(messageBody));
+
+        System.out.printf("Sent a basket message: %s%n", messageBody);
+    }*/
 }
