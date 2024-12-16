@@ -34,7 +34,7 @@ public class BasketService {
     }
 
     public void removeIngredientFromBasket(String ingredientId) {
-        basketRepository.deleteById(Integer.valueOf(ingredientId.substring(0, ingredientId.length() - 1)));
+        basketRepository.deleteById(Long.valueOf(ingredientId.substring(0, ingredientId.length() - 1)));
     }
 
     public void sendBasketToMessageQueue(List<Basket> baskets) throws JsonProcessingException {
