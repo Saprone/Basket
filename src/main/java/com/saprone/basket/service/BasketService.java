@@ -27,7 +27,7 @@ public class BasketService {
         this.senderClient = senderClient;
     }
 
-    public void addIngredientToBasket(String ingredientEncoded) throws Exception {
+    public void addIngredientToBasket(String ingredientEncoded) throws JsonProcessingException {
         String ingredientDecoded = URLDecoder.decode(ingredientEncoded, StandardCharsets.UTF_8);
         Basket basket = objectMapper.readValue(ingredientDecoded.substring(0, ingredientDecoded.length() - 1), new TypeReference<Basket>() {});
         basketRepository.save(basket);
