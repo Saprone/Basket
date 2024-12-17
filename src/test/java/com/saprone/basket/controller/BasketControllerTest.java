@@ -29,7 +29,7 @@ class BasketControllerTest {
     @Test
     void addIngredientToBasketShouldReturnOk() throws JsonProcessingException {
         // Arrange
-        String ingredient = "{\"id\":1,\"name\":\"Butter\"}"; // Example JSON string
+        String ingredient = "{\"id\":1,\"name\":\"Butter\"}";
         doNothing().when(basketService).addIngredientToBasket(anyString());
 
         // Act
@@ -43,7 +43,7 @@ class BasketControllerTest {
     @Test
     void removeIngredientFromBasketShouldReturnOk() {
         // Arrange
-        String ingredientId = "1"; // Example ID
+        String ingredientId = "1";
 
         // Act
         ResponseEntity<Void> response = basketController.removeIngredientFromBasket(ingredientId);
@@ -73,7 +73,7 @@ class BasketControllerTest {
     @Test
     void addIngredientToBasketShouldReturnBadRequestOnException() throws JsonProcessingException {
         // Arrange
-        String ingredient = "{\"id\":1,\"name\":\"Butter\"}"; // Example JSON string
+        String ingredient = "{\"id\":1,\"name\":\"Butter\"}";
         doThrow(new RuntimeException()).when(basketService).addIngredientToBasket(anyString());
 
         // Act
@@ -87,7 +87,7 @@ class BasketControllerTest {
     @Test
     void removeIngredientFromBasketShouldReturnBadRequestOnException() {
         // Arrange
-        String ingredientId = "1"; // Example ID
+        String ingredientId = "1";
         doThrow(new RuntimeException()).when(basketService).removeIngredientFromBasket(anyString());
 
         // Act
