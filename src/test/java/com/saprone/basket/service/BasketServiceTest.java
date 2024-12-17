@@ -47,8 +47,9 @@ class BasketServiceTest {
         List<Basket> baskets = basketService.getBasket();
 
         // Assert
-        assertThat(baskets).hasSize(2);
-        assertThat(baskets).containsExactlyInAnyOrder(basket1, basket2);
+        assertThat(baskets)
+            .hasSize(2)
+            .containsExactlyInAnyOrder(basket1, basket2);
         verify(basketRepository, times(1)).findAll();
     }
 
